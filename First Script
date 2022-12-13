@@ -1,0 +1,65 @@
+package day01;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import utils.DriverFactory;
+
+public class FirstScript {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+	    WebDriver driver = DriverFactory.getWebDriver();
+        
+        //Calling Login Function
+        String userName = "standard_user";
+        String password = "secret_sauce";
+        login(driver, userName, password);
+        
+        //Click to add BackPack on Cart
+        WebElement backPackWebElement = driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-backpack\"]"));
+        backPackWebElement.click();
+        
+        //Click to add BikeLight
+        WebElement bikeLightWebElement = driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-bike-light\"]"));
+        bikeLightWebElement.click();
+        
+        //Click on Cart Icon
+        WebElement cartIconWebElement = driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a"));
+        cartIconWebElement.click();
+        
+        //Click on CheckOut
+        WebElement checkOutWebElement = driver.findElement(By.xpath("//*[@id=\"checkout\"]"));
+        checkOutWebElement.click();
+        
+        //Filling Info
+        WebElement firstNameWebElement =  driver.findElement(By.xpath("//*[@id=\"first-name\"]"));
+        firstNameWebElement.sendKeys("Charan");
+        
+        WebElement lastNameWebElement = driver.findElement(By.xpath("//*[@id=\"last-name\"]"));
+        lastNameWebElement.sendKeys("Rathamsetti");
+        
+        WebElement zipCodeWebElement = driver.findElement(By.id("postal-code"));
+        zipCodeWebElement.sendKeys("522312");
+        
+        //Click on Continue
+        WebElement contWebElement = driver.findElement(By.id("continue"));
+        contWebElement.click();
+        
+        //Click on Finish
+        WebElement finishWebElement = driver.findElement(By.id("finish"));
+        finishWebElement.click();
+      
+	}
+	public static void login(WebDriver driver, String userName, String password) {
+		WebElement userNameWebElement = driver.findElement(By.id("user-name"));
+		userNameWebElement.sendKeys(userName);
+		
+		WebElement passwordWebElement = driver.findElement(By.id("password"));
+		passwordWebElement.sendKeys(password);
+		
+		driver.findElement(By.id("login-button")).click();
+	}
+
+}
